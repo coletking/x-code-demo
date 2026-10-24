@@ -16,6 +16,12 @@ const toneClasses: Record<ServiceCategory, { wash: string; icon: string; badge: 
   },
 };
 
+const sizeClasses: Record<"card" | "hero" | "tall", string> = {
+  card: "aspect-[4/3]",
+  tall: "aspect-[3/4]",
+  hero: "aspect-[4/5] sm:aspect-[5/4]",
+};
+
 export function ServiceVisual({
   category,
   icon: Icon,
@@ -29,20 +35,20 @@ export function ServiceVisual({
   icon: LucideIcon;
   seed: string;
   alt: string;
-  size?: "card" | "hero";
+  size?: "card" | "hero" | "tall";
   rounded?: boolean;
   className?: string;
 }) {
   const tone = toneClasses[category];
   const width = size === "hero" ? 800 : 480;
-  const height = size === "hero" ? 960 : 360;
+  const height = size === "hero" ? 960 : size === "tall" ? 640 : 360;
 
   return (
     <div
       className={cn(
         "relative isolate flex items-end overflow-hidden bg-primary-100",
         rounded && "rounded-2xl",
-        size === "hero" ? "aspect-[4/5] sm:aspect-[5/4]" : "aspect-[4/3]",
+        sizeClasses[size],
         className
       )}
     >

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Activity,
   HeartPulse,
@@ -9,12 +11,15 @@ import {
   Droplets,
   Dna,
   ArrowRight,
+  Clock3,
+  Tag,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { Service } from "@/lib/models/types";
 import { formatCurrency } from "@/lib/utils/date";
 import { Reveal } from "@/components/marketing/Reveal";
 import { ServiceVisual } from "@/components/marketing/ServiceVisual";
+import { FloatingChip } from "@/components/marketing/FloatingCard";
 import { LinkButton } from "@/components/ui/Button";
 
 export const iconMap: Record<string, LucideIcon> = {
@@ -64,14 +69,21 @@ export function ServiceSection({
           return (
             <Reveal key={service.id} delay={i * 0.06}>
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-primary-900/8 bg-white shadow-[0_2px_10px_-6px_rgba(15,33,31,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_30px_-12px_rgba(15,33,31,0.25)]">
-                <ServiceVisual
-                  category={service.category}
-                  icon={Icon}
-                  seed={service.id}
-                  alt={service.name}
-                  rounded={false}
-                  className="transition-transform duration-500 group-hover:scale-[1.03]"
-                />
+                <div className="relative">
+                  <ServiceVisual
+                    category={service.category}
+                    icon={Icon}
+                    seed={service.id}
+                    alt={service.name}
+                    size="tall"
+                    rounded={false}
+                    className="transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute bottom-3 right-3 flex flex-col items-end gap-1.5">
+                    <FloatingChip icon={Tag}>{formatCurrency(service.price)}</FloatingChip>
+                    <FloatingChip icon={Clock3}>{service.durationMinutes} mins</FloatingChip>
+                  </div>
+                </div>
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-display text-lg text-primary-950">
                     {service.name}
@@ -79,14 +91,6 @@ export function ServiceSection({
                   <p className="mt-2 flex-1 text-sm leading-relaxed text-primary-900/65">
                     {service.description}
                   </p>
-                  <div className="mt-4 flex items-center justify-between text-sm">
-                    <span className="font-semibold text-primary-800">
-                      {formatCurrency(service.price)}
-                    </span>
-                    <span className="text-primary-900/50">
-                      {service.durationMinutes} mins
-                    </span>
-                  </div>
                   <LinkButton
                     href={`/account/book?service=${service.id}`}
                     size="sm"
