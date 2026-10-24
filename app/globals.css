@@ -1,26 +1,87 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbfaf8;
+  --foreground: #14201e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+
+  /* Primary — deep clinical teal */
+  --color-primary-50: #f1f8f7;
+  --color-primary-100: #dcefec;
+  --color-primary-200: #b9dfd9;
+  --color-primary-300: #8fc9c0;
+  --color-primary-400: #5fac9f;
+  --color-primary-500: #3d8f81;
+  --color-primary-600: #2d7267;
+  --color-primary-700: #275b53;
+  --color-primary-800: #224842;
+  --color-primary-900: #1d3b37;
+  --color-primary-950: #0f211f;
+
+  /* Accent — warm gold */
+  --color-gold-50: #fbf7ef;
+  --color-gold-100: #f5ebd6;
+  --color-gold-200: #ead4a8;
+  --color-gold-300: #ddb876;
+  --color-gold-400: #cc9c4e;
+  --color-gold-500: #b9823a;
+  --color-gold-600: #9c682e;
+  --color-gold-700: #7d5127;
+  --color-gold-800: #654224;
+  --color-gold-900: #543720;
+  --color-gold-950: #2e1c10;
+
+  /* Status colors */
+  --color-status-pending: #d97706;
+  --color-status-confirmed: #059669;
+  --color-status-completed: #2563eb;
+  --color-status-cancelled: #dc2626;
+  --color-status-closed: #64748b;
+
+  --animate-float-slow: float-slow 14s ease-in-out infinite;
+  --animate-float-slower: float-slower 20s ease-in-out infinite;
+  --animate-gradient-pan: gradient-pan 18s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes float-slow {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -4%, 0) scale(1.05); }
+}
+
+@keyframes float-slower {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-3%, 3%, 0) scale(1.08); }
+}
+
+@keyframes gradient-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0c1413;
+    --foreground: #eef5f3;
+  }
 }
