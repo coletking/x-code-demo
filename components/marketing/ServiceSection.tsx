@@ -67,6 +67,8 @@ export function ServiceSection({
                 <ServiceVisual
                   category={service.category}
                   icon={Icon}
+                  seed={service.id}
+                  alt={service.name}
                   rounded={false}
                   className="transition-transform duration-500 group-hover:scale-[1.03]"
                 />

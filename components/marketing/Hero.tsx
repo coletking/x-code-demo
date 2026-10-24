@@ -42,7 +42,14 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="order-2 w-full max-w-md justify-self-center lg:order-1 lg:justify-self-start"
         >
-          <ServiceVisual category="medical" icon={Stethoscope} size="hero" className="shadow-2xl shadow-primary-950/40" />
+          <ServiceVisual
+            category="medical"
+            icon={Stethoscope}
+            seed="luxe-hero-physician"
+            alt="Physician consulting with a patient at The Luxe Medical Clinic"
+            size="hero"
+            className="shadow-2xl shadow-primary-950/40"
+          />
         </motion.div>
 
         <motion.div
