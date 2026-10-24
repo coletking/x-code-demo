@@ -3,6 +3,11 @@
 :root {
   --background: #fbfaf8;
   --foreground: #14201e;
+  /* Fixed light theme — tell the browser not to auto-dark-style native
+     controls (select dropdowns, scrollbars, checkboxes) on a dark-mode
+     OS/browser. Without this, Chrome can render e.g. <select> text in a
+     light color while our CSS keeps the control background white. */
+  color-scheme: light;
 }
 
 @theme inline {

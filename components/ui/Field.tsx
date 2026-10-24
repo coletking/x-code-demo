@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 
 const fieldClasses =
@@ -38,6 +39,27 @@ export function TextAreaField({
   );
 }
 
+export function SelectBox({
+  className,
+  children,
+  ...props
+}: SelectHTMLAttributes<HTMLSelectElement> & { children: ReactNode }) {
+  return (
+    <div className="relative">
+      <select
+        className={cn(fieldClasses, "appearance-none pr-9 cursor-pointer", className)}
+        {...props}
+      >
+        {children}
+      </select>
+      <ChevronDown
+        size={15}
+        className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-primary-900/40"
+      />
+    </div>
+  );
+}
+
 export function SelectField({
   label,
   className,
@@ -47,9 +69,9 @@ export function SelectField({
   return (
     <div>
       <Label>{label}</Label>
-      <select className={cn(fieldClasses, "appearance-none", className)} {...props}>
+      <SelectBox className={className} {...props}>
         {children}
-      </select>
+      </SelectBox>
     </div>
   );
 }

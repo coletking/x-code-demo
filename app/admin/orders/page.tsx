@@ -7,6 +7,7 @@ import { OrderDetailModal } from "@/components/admin/OrderDetailModal";
 import { OrderStatusBadge } from "@/components/shared/StatusBadge";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { SelectBox } from "@/components/ui/Field";
 import { StatCard } from "@/components/admin/StatCard";
 import { PageLoader } from "@/components/ui/Spinner";
 import { formatCurrency, formatDisplayDate } from "@/lib/utils/date";
@@ -78,15 +79,15 @@ export default function AdminOrdersLedgerPage() {
             className="w-64 rounded-xl border border-primary-900/10 bg-white py-2 pl-9 pr-3 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
           />
         </div>
-        <select
+        <SelectBox
           value={paymentFilter}
           onChange={(e) => setPaymentFilter(e.target.value as PaymentFilter)}
-          className="rounded-xl border border-primary-900/10 bg-white px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+          className="w-48"
         >
           <option value="all">All payment statuses</option>
           <option value="paid">Paid</option>
           <option value="unpaid">Unpaid</option>
-        </select>
+        </SelectBox>
       </div>
 
       <Card className="mt-5 overflow-hidden">

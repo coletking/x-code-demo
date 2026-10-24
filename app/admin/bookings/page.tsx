@@ -10,6 +10,7 @@ import { DayOrdersPanel } from "@/components/admin/DayOrdersPanel";
 import { CreateOrderModal } from "@/components/admin/CreateOrderModal";
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/Button";
+import { SelectBox } from "@/components/ui/Field";
 import { PageLoader } from "@/components/ui/Spinner";
 import { orderStatusMeta } from "@/lib/utils/statusColor";
 import type { Order, OrderStatus } from "@/lib/models/types";
@@ -94,10 +95,10 @@ export default function AdminBookingsPage() {
                 className="w-64 rounded-xl border border-primary-900/10 bg-white py-2 pl-9 pr-3 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
               />
             </div>
-            <select
+            <SelectBox
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as OrderStatus | "all")}
-              className="rounded-xl border border-primary-900/10 bg-white px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+              className="w-44"
             >
               <option value="all">All statuses</option>
               {Object.entries(orderStatusMeta).map(([status, meta]) => (
@@ -105,7 +106,7 @@ export default function AdminBookingsPage() {
                   {meta.label}
                 </option>
               ))}
-            </select>
+            </SelectBox>
           </>
         )}
       </div>
