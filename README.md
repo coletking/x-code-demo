@@ -55,7 +55,7 @@ as `pending`, visible immediately to the clinic in the admin dashboard.
   - **View** — `app/**/page.tsx` + `components/**`
 - Auth is a custom httpOnly session cookie (`luxe_session`) set by
   `/api/auth/login` and `/api/auth/register`; passwords are hashed with
-  bcrypt. `proxy.ts` (Next 16's middleware convention) guards `/account/*`
+  bcrypt. `middleware.ts` guards `/account/*`
   and `/admin/*` by role.
 
 ## Local setup

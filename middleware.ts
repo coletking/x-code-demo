@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { decodeSession, SESSION_COOKIE_NAME } from "@/lib/session";
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const session = decodeSession(request.cookies.get(SESSION_COOKIE_NAME)?.value);
 
