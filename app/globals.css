@@ -79,9 +79,11 @@ body {
   color: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0c1413;
-    --foreground: #eef5f3;
-  }
-}
+/*
+  This design is a fixed light theme (cream background, dark teal text,
+  white cards) — section headings, body copy, and cards throughout use
+  hardcoded dark-on-light colors rather than the --background/--foreground
+  variables. A prefers-color-scheme override here would only flip the page
+  background to near-black while that hardcoded text stayed dark, making it
+  unreadable. No proper dark variant is designed, so the theme stays fixed.
+*/

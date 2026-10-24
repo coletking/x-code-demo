@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useEffect, useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -34,16 +34,22 @@ function nextDays(count: number): Date[] {
   return days;
 }
 
-export default function BookAppointmentPage() {
+function BookingFlow() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user } = useAuth();
   const { bookOrder } = useUserOrders(user?.id);
   const toast = useToast();
 
-  const [stepIndex, setStepIndex] = useState(0);
+  const preselectedService = useMemo(() => {
+    const id = searchParams.get("service");
+    return id ? getServiceById(id) : undefined;
+  }, [searchParams]);
+
+  const [stepIndex, setStepIndex] = useState(preselectedService ? 1 : 0);
   const [isBooking, setIsBooking] = useState(false);
-  const [category, setCategory] = useState<ServiceCategory>("medical");
-  const [serviceId, setServiceId] = useState<string | null>(null);
+  const [category, setCategory] = useState<ServiceCategory>(preselectedService?.category ?? "medical");
+  const [serviceId, setServiceId] = useState<string | null>(preselectedService?.id ?? null);
   const [dateKey, setDateKey] = useState<string | null>(null);
   const [time, setTime] = useState<string | null>(null);
   const [notes, setNotes] = useState("");
@@ -292,5 +298,13 @@ export default function BookAppointmentPage() {
         )}
       </motion.div>
     </div>
+  );
+}
+
+export default function BookAppointmentPage() {
+  return (
+    <Suspense>
+      <BookingFlow />
+    </Suspense>
   );
 }

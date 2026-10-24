@@ -62,9 +62,9 @@ export default function AdminDashboardPage() {
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard
           icon={CalendarRange}
-          label="Total orders"
+          label="Total bookings"
           value={orders.length}
-          href="/admin/orders"
+          href="/admin/bookings"
         />
         <StatCard
           icon={UsersIcon}
@@ -91,10 +91,10 @@ export default function AdminDashboardPage() {
       <div className="mt-6 grid gap-5 lg:grid-cols-3">
         <Card className="p-5 lg:col-span-2">
           <Link
-            href="/admin/orders"
+            href="/admin/bookings"
             className="group flex items-center justify-between font-display text-base text-primary-950"
           >
-            Orders by status
+            Bookings by status
             <ArrowRight size={14} className="text-primary-900/30 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <div className="mt-4 space-y-3">
@@ -140,17 +140,17 @@ export default function AdminDashboardPage() {
 
       <Card className="mt-6 overflow-hidden">
         <Link
-          href="/admin/orders"
+          href="/admin/bookings"
           className="group flex items-center justify-between border-b border-primary-900/8 px-5 py-4"
         >
-          <p className="font-display text-base text-primary-950">Recent orders</p>
+          <p className="font-display text-base text-primary-950">Recent bookings</p>
           <ArrowRight size={14} className="text-primary-900/30 transition-transform group-hover:translate-x-0.5" />
         </Link>
         <div className="divide-y divide-primary-900/8">
           {recentOrders.map((order) => (
             <Link
               key={order.id}
-              href="/admin/orders"
+              href="/admin/bookings"
               className="flex items-center justify-between gap-4 px-5 py-3 text-sm hover:bg-primary-50/50"
             >
               <div>
@@ -163,7 +163,7 @@ export default function AdminDashboardPage() {
             </Link>
           ))}
           {recentOrders.length === 0 && (
-            <p className="px-5 py-6 text-center text-sm text-primary-900/50">No orders yet.</p>
+            <p className="px-5 py-6 text-center text-sm text-primary-900/50">No bookings yet.</p>
           )}
         </div>
       </Card>

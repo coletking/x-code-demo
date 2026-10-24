@@ -1,8 +1,9 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { ArrowRight, CalendarCheck, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarCheck, ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
 import { LinkButton } from "@/components/ui/Button";
+import { ServiceVisual } from "@/components/marketing/ServiceVisual";
 
 const container: Variants = {
   hidden: {},
@@ -34,12 +35,21 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(15,33,31,0.55)_80%)]" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[86vh] max-w-7xl flex-col justify-center px-5 py-28 lg:px-8">
+      <div className="relative mx-auto grid min-h-[86vh] max-w-7xl items-center gap-12 px-5 py-28 lg:grid-cols-2 lg:gap-10 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="order-2 w-full max-w-md justify-self-center lg:order-1 lg:justify-self-start"
+        >
+          <ServiceVisual category="medical" icon={Stethoscope} size="hero" className="shadow-2xl shadow-primary-950/40" />
+        </motion.div>
+
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="max-w-3xl"
+          className="order-1 max-w-xl lg:order-2"
         >
           <motion.div variants={item}>
             <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-gold-200 backdrop-blur-sm">
@@ -50,7 +60,7 @@ export function Hero() {
 
           <motion.h1
             variants={item}
-            className="mt-6 font-display text-4xl leading-[1.08] text-white sm:text-5xl lg:text-6xl"
+            className="mt-6 font-display text-4xl leading-[1.08] text-white sm:text-5xl lg:text-5xl xl:text-6xl"
           >
             Whole-person medical care,
             <br />
